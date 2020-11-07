@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pet-store"
+    }
+  },
+  "defaultProject": "pet-store",
+  "cli": {
+    "analytics": false
+  }
 }
