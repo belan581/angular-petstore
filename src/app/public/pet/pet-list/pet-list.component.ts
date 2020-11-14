@@ -2,16 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { PetService } from 'src/app/services/pet.service';
 
 @Component({
-  selector: 'app-pet',
-  templateUrl: './app-pet.component.html',
-  styleUrls: ['./app-pet.component.css']
+  selector: 'app-pet-list',
+  templateUrl: './pet-list.component.html',
+  styleUrls: ['./pet-list.component.css']
 })
-export class AppPetComponent implements OnInit {
+export class PetListComponent implements OnInit {
 
   pets: any;
-  currentPet = null;
-  currentIndex = -1;
-  name = '';
 
   constructor(private petService: PetService) { }
 
@@ -30,6 +27,5 @@ export class AppPetComponent implements OnInit {
           console.log(error);
         });
   }
-
 
 }
