@@ -10,7 +10,7 @@ export class CreatePetComponent implements OnInit {
 
   pet = {
     "category": {
-      "id": 0,
+      "id": 3,
     },
     "id": 0,
     "name": "string",
@@ -18,7 +18,7 @@ export class CreatePetComponent implements OnInit {
     "price": 0,
     "status": true,
     "tag": {
-      "id": 0,
+      "id": 2,
       "name": "string"
     }
   }
@@ -36,11 +36,11 @@ export class CreatePetComponent implements OnInit {
       photourl: this.pet.photourl,
       price: this.pet.price,
       status: this.pet.status,
-      category: {
-        id: this.pet.category.id,
-      } ,
-      tag: {
-        id: this.pet.tag.id
+      category:{
+        id:2
+      },
+      tag:{
+        id:3
       }
     };
 
