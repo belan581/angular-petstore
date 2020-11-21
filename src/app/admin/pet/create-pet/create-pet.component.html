@@ -4,7 +4,11 @@
       <div *ngIf="!submitted">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" required [(ngModel)]="pet.name" name="name"/>
+          <input  type="text" 
+                  class="form-control" 
+                  id="name" 
+                  required [(ngModel)]="pet.name" 
+                  name="name"/>
         </div>
   
         <div class="form-group">
@@ -26,23 +30,15 @@
 
         <div class="form-group">
             <label for="category">Category</label>
-            <select class="form-control" id="category" required [(ngModel)]="pet.category">
-              <option selected value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+            <select class="form-control" id="category" required [(ngModel)]="pet.category.id">
+              <option [value]="cat.id" *ngFor="let cat of categories">{{cat.name}}</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="tag">Tag</label>
-            <select class="form-control" id="tag" required [(ngModel)]="pet.tag">
-              <option selected value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+            <select class="form-control" id="tag" required [(ngModel)]="pet.tag.id">
+              <option [value]="tag.id" *ngFor="let tag of tags">{{tag.name}}</option>
             </select>
           </div>
   

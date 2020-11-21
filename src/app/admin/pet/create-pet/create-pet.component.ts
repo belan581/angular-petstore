@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 import { PetService } from 'src/app/services/pet.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { TagService } from 'src/app/services/tag.service';
+//importar servicios de tag
 
 @Component({
   selector: 'app-create-pet',
@@ -8,9 +12,13 @@ import { PetService } from 'src/app/services/pet.service';
 })
 export class CreatePetComponent implements OnInit {
 
+  categories: any;
+  tags: any;
+
   pet = {
     "category": {
-      "id": 3,
+      "id": 0,
+      "name":"string"
     },
     "id": 0,
     "name": "string",
@@ -18,16 +26,52 @@ export class CreatePetComponent implements OnInit {
     "price": 0,
     "status": true,
     "tag": {
-      "id": 2,
+      "id": 0,
       "name": "string"
     }
   }
 
   submitted = false;
 
-  constructor(private petService: PetService) { }
+  constructor(private petService: PetService,
+              private categoryService: CategoryService,
+              private tagService: TagService ) { }
 
   ngOnInit(): void {
+    this.retrieveCategories();
+    this.retrieveTags();
+  }
+
+  retrieveCategories(): void{
+    this.categoryService.getAll()
+      .subscribe(
+        data => {
+          this.categories=data;
+          console.log(data);
+          
+        },
+        error=>{
+          console.error();
+          
+        }
+        
+      );
+  }
+
+  retrieveTags(): void{
+    this.tagService.getAll()
+      .subscribe(
+        data => {
+          this.tags=data;
+          console.log(data);
+          
+        },
+        error=>{
+          console.error();
+          
+        }
+        
+      );
   }
 
   savePet(): void {
@@ -37,10 +81,12 @@ export class CreatePetComponent implements OnInit {
       price: this.pet.price,
       status: this.pet.status,
       category:{
-        id:2
+        id:this.pet.category.id,
+        name:this.pet.category.name
       },
       tag:{
-        id:3
+        id: this.pet.tag.id,
+        name:this.pet.tag.name
       }
     };
 
@@ -60,6 +106,7 @@ export class CreatePetComponent implements OnInit {
     this.pet = {
       "category": {
         "id": 0,
+        "name":"string"
       },
       "id": 0,
       "name": "string",

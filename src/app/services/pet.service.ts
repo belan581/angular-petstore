@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http'
 
-const baseUrl = 'http://localhost:8080/api/pet';
+const baseUrl = 'http://localhost:8081/api/pet';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,11 @@ export class PetService {
   }
 
   create(data): Observable<any> {
-    return this.http.post(`${baseUrl}/`, data);
+    const headerOptions = new HttpHeaders({
+      'Content-Type':  'application/json'
+    });
+    
+    return this.http.post<any>(`${baseUrl}/`,data, {headers: headerOptions});
   }
+
 }
